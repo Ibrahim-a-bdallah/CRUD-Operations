@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
+import Search from "./Components/ui/Search/Search"
 
 function App() {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>app</Button>
+      <Search/>
     </div>
   );
 }
