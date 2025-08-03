@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
 
+import Form from "./Components/ui/Form";
+import React from "react";
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>app</Button>
-    </div>
+    <Form />
   );
 }
 
