@@ -20,13 +20,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/Components/ui/checkbox"
-import { MoreVertical  } from "lucide-react"
+import { icons, MoreVertical  } from "lucide-react"
 import DefaultHeader from "./default-header"
+import { ContextMenuShortcut } from "../ui/context-menu"
+import { FaRegEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 
 
 export const columns = [
-     {
+    {
         id: "select",
         header: ({ table }) => (
         <Checkbox
@@ -40,7 +43,8 @@ export const columns = [
         />
         ),
         cell: ({ row }) => (
-        <Checkbox
+        <Checkbox 
+             className=""
             checked={row.getIsSelected()}
             onCheckedChange={(value) => row.toggleSelected(!!value)}
             aria-label="Select row"
@@ -51,11 +55,35 @@ export const columns = [
     },
     {
         accessorKey: "requestNo",
-        header: (info ) => <DefaultHeader info={info} name="Request No." /> ,
+        header: (info ) => <DefaultHeader info={info} name="Request No." className="" /> ,
+        cell : ({row}) =>{
+            const requestNo = row.original.requestNo
+            const status = row.original.status
+
+            return    (
+                <div className={`flex flex-col pl-3 border-l-4 border- ${
+                     status ==="Urgent" ? "border-red-600 " :
+                     status ==="Attention" ? "border-yellow-600" :
+                     "border-green-600 " 
+                }`}>
+                    <span className="font-bold">{requestNo}</span>
+                    <span 
+                        className= { `text-xs ${
+                            status ==="Urgent" ? "text-red-600 " :
+                            status ==="Attention" ? "text-yellow-600" :
+                            "text-green-600 " 
+
+                        }`}
+                    >
+                        {status}
+                    </span>
+                </div>
+            )
+        }
     },
     {
         accessorKey: "area",
-         header: (info ) => <DefaultHeader info={info} name="Area" />
+        header: (info ) => <DefaultHeader info={info} name="Area" />
     },
     {
         accessorKey: "date",
@@ -78,38 +106,60 @@ export const columns = [
     {
         accessorKey: "materials",
         header:  (info ) => <DefaultHeader info={info} name="Materials / Products"/>  ,
+        cell : ({row}) =>{
+            
+            const materials = row.original.materials
+
+            return    (
+                <div  className=" flex space-x-3">
+                    <span className="text-lg font-bold text-gray-800">{materials}</span>
+                    <div className="flex flex-col">
+                            <span  className= "text-xs text-gray-500">Material </span>
+                            <span  className= "text-xs text-gray-500">requested</span>
+                    </div>
+                </div>
+            )
+        }
     },
     {
         id: "actions",
-         header:  (info ) => <DefaultHeader info={info} name="Actions"/>  ,
+        header:  (info ) => <DefaultHeader info={info} name="Actions"/>  ,
         cell: ({ row }) => {
 
             const requestId = row.getValue("requestNo")
 
             return (
                 <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="h-8 w-8 p-0">
-                                <span className="sr-only">Open menu</span>
-                                <MoreVertical className="h-4 w-4" />
+                        <DropdownMenuTrigger asChild className ="cursor-pointer ">
+                             <Button variant="ghost" size="lg" className="h-8 w-8 p-0 text-white ">
+                                <span className="sr-only ">Open menu</span>
+                                <div className="bg-fuchsia-600 py-1  rounded-4xl ">
+                                   <MoreVertical className="h-5 w-fit  bg-blue-60 0 " />
+                                </div>
                             </Button>
                         </DropdownMenuTrigger>
 
-                        <DropdownMenuContent align="end" onCloseAutoFocus={(e) => e.preventDefault()}>
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuContent className="bg-white border-gray-300" align="end" onCloseAutoFocus={(e) => e.preventDefault()}>
+                            <DropdownMenuLabel  className="font-bold   border-gray-300 mb-2" >Actions</DropdownMenuLabel>
                             {/* <DropdownMenuItem onClick={() => alert(`View Request ${requestId}`)}>
                             View
                             </DropdownMenuItem> */}
-                            <DropdownMenuItem onClick={() => alert(`Edit Request ${requestId}`)}>
-                            Edit
+                            <DropdownMenuItem className="text-green-600 cursor-pointer" onClick={() => alert(`Edit Request ${requestId}`)}>
+                                Edit
+                                <ContextMenuShortcut>
+                                    <FaRegEdit />
+                                </ContextMenuShortcut>
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="text-red-600" onClick={() => alert(`Delete Request ${requestId}`)}>
-                            Delete
+                            <DropdownMenuItem className="text-red-600 pt-0 cursor-pointer" onClick={() => alert(`Delete Request ${requestId}`)}>
+                                Delete
+                                <ContextMenuShortcut>
+                                    <MdDelete />
+                                </ContextMenuShortcut>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                 </DropdownMenu>
             )
         },
-    },
+    }
 ]
