@@ -41,9 +41,10 @@ const createUser = (numUser) => {
                         action: "Action",
                     });
 
-                }
-
+                }                
                 return users;
+                
+                
 };
 
 export const data= [

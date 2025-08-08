@@ -22,6 +22,9 @@ import {
 import { Checkbox } from "@/Components/ui/checkbox"
 import { MoreVertical  } from "lucide-react"
 import DefaultHeader from "./default-header"
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 
 
 
@@ -85,7 +88,24 @@ export const columns = [
         cell: ({ row }) => {
 
             const requestId = row.getValue("requestNo")
-
+            // SweetAlert2 for confirmation dialog
+            const MySwal = withReactContent(Swal)
+            const handleDelete = () => {
+                MySwal.fire({
+                    title: 'Are you sure?',
+                    text: `You are about to delete request ${requestId}`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it',
+                    cancelButtonText: 'cancel',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform delete action here                                                
+                         row.original.onDelete(row.original.id);
+                        MySwal.fire('Deleted!', `Request ${requestId} has been deleted.`, 'success')
+                    }
+                })
+            }
             return (
                 <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -104,7 +124,7 @@ export const columns = [
                             Edit
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="text-red-600" onClick={() => alert(`Delete Request ${requestId}`)}>
+                            <DropdownMenuItem className="text-red-600" onClick={() => handleDelete()}>`
                             Delete
                             </DropdownMenuItem>
                         </DropdownMenuContent>

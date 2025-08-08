@@ -41,6 +41,7 @@ export function DataTable({columns, data,}
     // const [sorting, setSorting] = React.useState<SortingState>([])
 
 
+
   const table = useReactTable({
     data,
     columns,
@@ -83,6 +84,7 @@ export function DataTable({columns, data,}
                             key={row.id}
                             data-state={row.getIsSelected() && "selected"}
                         >
+                            
                             {row.getVisibleCells().map((cell) => (
                             <TableCell key={cell.id}>
                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
