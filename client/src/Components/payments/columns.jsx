@@ -101,7 +101,7 @@ export const columns = [
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Perform delete action here                                                
-                         row.original.onDelete(row.original.id);
+                         row.original.onDelete(row.original.requestNo);                                                                          
                         MySwal.fire('Deleted!', `Request ${requestId} has been deleted.`, 'success')
                     }
                 })
