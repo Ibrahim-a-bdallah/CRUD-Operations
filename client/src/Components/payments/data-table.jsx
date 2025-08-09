@@ -1,13 +1,11 @@
 "use client"
 import React from "react"
 import {
-//   ColumnDef,
   flexRender,
   getCoreRowModel,
-  getSortedRowModel,
   useReactTable,
+  getSortedRowModel,
 //   SortingState,
-//   getSortedRowModel,
 } from "@tanstack/react-table"
 
 import {
@@ -18,7 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Button } from "../ui/button"
+// import { Button } from "../ui/button"
 
 
 // دا جزء ال interfase في ts
@@ -28,7 +26,7 @@ import { Button } from "../ui/button"
 //   data: TData[]
 // }
 
-export function DataTable({columns, data,}
+export function DataTable({columns, data}
 
     
     
@@ -54,15 +52,15 @@ export function DataTable({columns, data,}
   })
 
   return (
-    <div className="w-full flex flex-col gap-4">
-        <div className="overflow-hidden rounded-md  flex flex-2/3">
+    <div className="w-full flex flex-col gap-4 ">
+        <div className="overflow-hidden  rounded-md  flex flex-2/3  max-h-[600px]">
         <Table>
-                <TableHeader className= " ">
+                <TableHeader className= "sticky top-0 z-10 start-0 bg-white shadow-md ">
                     {table.getHeaderGroups().map((headerGroup) => (
-                        <TableRow key={headerGroup.id}>
+                        <TableRow key={headerGroup.id} className="border-gray-100 ">
                         {headerGroup.headers.map((header) => {
                             return (
-                            <TableHead key={header.id}>
+                            <TableHead key={header.id} className="pb-5">
                                 {header.isPlaceholder
                                 ? null
                                 : flexRender(
@@ -80,12 +78,14 @@ export function DataTable({columns, data,}
                     {table.getRowModel().rows?.length ? (
                         table.getRowModel().rows.map((row) => (                          
                         <TableRow
-                        className=""
+                        className= {" hover:bg-gray-100 transition-colors "}
                             key={row.id}
                             data-state={row.getIsSelected() && "selected"}
-                        >                              
+                            
+                        >
+
                             {row.getVisibleCells().map((cell) => (
-                            <TableCell key={cell.id}>
+                            <TableCell key={cell.id} className="text-gray-700  py-3 text-sm font-medium border-b border-gray-300">
                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
                             </TableCell>
                             ))}
@@ -101,11 +101,13 @@ export function DataTable({columns, data,}
                 </TableBody>
         </Table>
         </div>
+
+
+        
         {/*  وكمان اللي هعملها(filter) , (selected)عشان اعرف عدد الصفوف المحدده */}
         <div className="flex-1 text-sm text-muted-foreground">
-            {table.getPreSelectedRowModel().rows.length} of{""}
+            {table.getFilteredSelectedRowModel().rows.length} of{" "}
             {table.getFilteredRowModel().rows.length} row(s) selected.
-            {/* {table.getFilteredRowModel().rows.length} of{""} */}
         </div>
 
          {/* <div className="flex items-center justify-end space-x-2 py-4">

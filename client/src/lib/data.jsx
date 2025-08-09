@@ -39,6 +39,7 @@ const createUser = (numUser) => {
                         total: faker.finance.amount(100, 1000, 2),
                         materials: faker.commerce.productName(),
                         action: "Action",
+                        status: "fine",
                     });
 
                 }                
