@@ -22,9 +22,13 @@ import {
 import { Checkbox } from "@/Components/ui/checkbox"
 import { icons, MoreVertical  } from "lucide-react"
 import DefaultHeader from "./default-header"
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 import { ContextMenuShortcut } from "../ui/context-menu"
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+
 
 
 
@@ -127,7 +131,24 @@ export const columns = [
         cell: ({ row }) => {
 
             const requestId = row.getValue("requestNo")
-
+            // SweetAlert2 for confirmation dialog
+            const MySwal = withReactContent(Swal)
+            const handleDelete = () => {
+                MySwal.fire({
+                    title: 'Are you sure?',
+                    text: `You are about to delete request ${requestId}`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it',
+                    cancelButtonText: 'cancel',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform delete action here                                                
+                         row.original.onDelete(row.original.requestNo);                                                                          
+                        MySwal.fire('Deleted!', `Request ${requestId} has been deleted.`, 'success')
+                    }
+                })
+            }
             return (
                 <DropdownMenu>
                         <DropdownMenuTrigger asChild className ="cursor-pointer ">
@@ -151,7 +172,8 @@ export const columns = [
                                 </ContextMenuShortcut>
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="text-red-600 pt-0 cursor-pointer" onClick={() => alert(`Delete Request ${requestId}`)}>
+
+                            <DropdownMenuItem className="text-red-600 pt-0 cursor-pointer" onClick={() => handleDelete()`)}>
                                 Delete
                                 <ContextMenuShortcut>
                                     <MdDelete />
