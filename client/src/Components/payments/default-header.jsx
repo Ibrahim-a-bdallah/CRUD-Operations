@@ -21,9 +21,11 @@ export default function DefaultHeader({info , name}){
           {sorted === "asc" && <FaCaretSquareDown />} 
           {sorted === "desc" && <FaCaretSquareUp />} 
         </ContextMenuTrigger>
+
         <ContextMenuContent
             onCloseAutoFocus={(e) => e.preventDefault()}
             onContextMenu={(e) => e.preventDefault()}
+            className="bg-white border-gray-300"
         >
             {
                 table.getAllColumns().filter((column) => column.getCanHide())
