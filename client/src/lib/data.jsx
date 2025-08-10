@@ -42,9 +42,10 @@ const createUser = (numUser) => {
                         status: "fine",
                     });
 
-                }
-
+                }                
                 return users;
+                
+                
 };
 
 export const data= [

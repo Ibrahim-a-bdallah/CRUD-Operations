@@ -39,6 +39,7 @@ export function DataTable({columns, data}
     // const [sorting, setSorting] = React.useState<SortingState>([])
 
 
+
   const table = useReactTable({
     data,
     columns,
@@ -75,19 +76,20 @@ export function DataTable({columns, data}
 
                 <TableBody>
                     {table.getRowModel().rows?.length ? (
-                        table.getRowModel().rows.map((row) => (
+                        table.getRowModel().rows.map((row) => (                          
                         <TableRow
                         className= {" hover:bg-gray-100 transition-colors "}
                             key={row.id}
                             data-state={row.getIsSelected() && "selected"}
                             
                         >
+
                             {row.getVisibleCells().map((cell) => (
                             <TableCell key={cell.id} className="text-gray-700  py-3 text-sm font-medium border-b border-gray-300">
                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
                             </TableCell>
                             ))}
-                        </TableRow>
+                        </TableRow>                        
                         ))
                     ) : (
                         <TableRow>
