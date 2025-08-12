@@ -173,7 +173,7 @@ export const columns = [
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
 
-                            <DropdownMenuItem className="text-red-600 pt-0 cursor-pointer" onClick={() => handleDelete()`)}>
+                            <DropdownMenuItem className="text-red-600 pt-0 cursor-pointer" onClick={() => handleDelete()}>
                                 Delete
                                 <ContextMenuShortcut>
                                     <MdDelete />

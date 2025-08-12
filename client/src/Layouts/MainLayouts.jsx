@@ -9,7 +9,7 @@ const MainLayouts = () => {
     <>
       <Header />
       <Outlet />
-      <Form />
+      {/* <Form /> */}
       <Succssed />
     </>
   );
