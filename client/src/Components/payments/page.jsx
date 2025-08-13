@@ -1,15 +1,16 @@
-import React from "react"
-import { columns } from "./columns"  
-import { DataTable } from "./data-table"
-import { data } from "@/lib/data"
-import { useState } from "react"
-
-
+import React from "react";
+import { columns } from "./columns";
+import { DataTable } from "./data-table";
+import axios from 'axios';
+import  { useEffect, useState } from 'react';
+// import { data } from "@/lib/data";
+// import { useState } from "react";
+// import  { rowsItem } from "./rows";
 
 // الجزء دا هستخدمه وانا بجيب الداتا من ال >>> api بدل من page.jsx
 
 // async function getData()
-// // : Promise<Payment[]> 
+// // : Promise<Payment[]>
 // {
 //   // Fetch data from your API here.
 //   return [
@@ -23,10 +24,9 @@ import { useState } from "react"
 //   ]
 // }
 
-
 // export default async function DemoPage() {
 
-//     // الجزء دا هستخدمه وانا بجيب الداتا من ال >>> api بدل من page.jsx  
+//     // الجزء دا هستخدمه وانا بجيب الداتا من ال >>> api بدل من page.jsx
 //     //   const data = await getData()
 
 //   return (
@@ -36,28 +36,62 @@ import { useState } from "react"
 //   )
 // }
 
-
-
-
 // deleted this function after get data from api
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export let rowsItem  = []
+
+
+
 export default function DemoPage() {
- const [Data , setData] = useState(data);
- const hundleDelete = (id) => {
-    setData((prevData) => prevData.filter(item => item.requestNo !== id));
+
+    const [getData, setGetData] = useState([]);
+
+  async function getCategories() {
+    try {
+      const {data} = await axios.get("http://localhost:5000/api/items")
+      setGetData(data);
+      console.log(data);
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
   }
-  const dataWithDelete = Data.map((item) => ({
-    ...item,
-    onDelete: hundleDelete,
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+  
+  let rowsItem = getData.map(user => ({
+    requestNo: user.requestNo,
+    name: user.name,
+    description: user.description,
+    price: user.price,
+    brand: user.brand,
+    category: user.category,
   }));
+console.log(getData);
 
 
   return (
     <div className="container mx-auto py-10 px-3">
-      <DataTable columns={columns} data={dataWithDelete} />
-      
+      <DataTable columns={columns} data={rowsItem} />
     </div>
-    
-    
-  )
+  );
 }
