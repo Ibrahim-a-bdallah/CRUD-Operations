@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-
+.module {
+  padding: 0 !important;
+  background-color: black !important;
+}
 
 :root {
   --radius: 0.625rem;
@@ -76,7 +79,7 @@
 
 ::-webkit-scrollbar {
   @apply w-1.5 h-2.5;
- 
+
 }
 
 ::-webkit-scrollbar-track {
