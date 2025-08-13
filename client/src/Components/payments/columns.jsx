@@ -26,6 +26,7 @@ import withReactContent from "sweetalert2-react-content";
 import { ContextMenuShortcut } from "../ui/context-menu";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+// import { useState } from "react";
 
 export const columns = [
   {
@@ -87,16 +88,16 @@ export const columns = [
     },
   },
   {
-    accessorKey: "area",
-    header: (info) => <DefaultHeader info={info} name="Area" />,
+    accessorKey: "name",
+    header: (info) => <DefaultHeader info={info} name="Name" />,
   },
   {
-    accessorKey: "date",
-    header: (info) => <DefaultHeader info={info} name="Date" />,
+    accessorKey: "brand",
+    header: (info) => <DefaultHeader info={info} name="Brand" />,
   },
   {
-    accessorKey: "needDate",
-    header: (info) => <DefaultHeader info={info} name="Need Date" />,
+    accessorKey: "category",
+    header: (info) => <DefaultHeader info={info} name="Category" />,
   },
   {
     accessorKey: "price",
@@ -104,26 +105,9 @@ export const columns = [
     cell: ({ row }) => `$${row.getValue("price")}`, // Format price
   },
   {
-    accessorKey: "total",
-    header: (info) => <DefaultHeader info={info} name="Total" />,
-    cell: ({ row }) => `$${row.getValue("total")}`, // Format price
-  },
-  {
-    accessorKey: "materials",
-    header: (info) => <DefaultHeader info={info} name="Materials / Products" />,
-    cell: ({ row }) => {
-      const materials = row.original.materials;
-
-      return (
-        <div className=" flex space-x-3">
-          <span className="text-lg font-bold text-gray-800">{materials}</span>
-          <div className="flex flex-col">
-            <span className="text-xs text-gray-500">Material </span>
-            <span className="text-xs text-gray-500">requested</span>
-          </div>
-        </div>
-      );
-    },
+    accessorKey: "description",
+    header: (info) => <DefaultHeader info={info} name="Description" />,
+    // cell: ({ row }) => `$${row.getValue("total")}`, // Format price
   },
   {
     id: "actions",
@@ -204,3 +188,39 @@ export const columns = [
     },
   },
 ];
+
+// const users = [
+//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
+//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
+//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
+//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
+//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
+//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
+
+// ];
+// const [Categories, setCategories] = useState(null)
+
+// async function getCategories() {
+//   let {data} =  await axios.get("https://ecommerce.routemisr.com/api/v1/categories")
+//   setCategories(data.data)
+
+// }
+// useEffect(() => {
+//   getCategories()
+// }, [])
+
+// export const rows = users.map(user => ({
+// requestNo: user.requestNo,
+// name:user.name,
+// description:user.description,
+// price:user.price,
+// brand:user.brand,
+// category:user.category,
+// // image:user.image,
+
+// // // هنا لو عايز تمسح أو تعدل هتدي أكشن
+// // onDelete: (id) => {
+// //   console.log("Deleting request", id);
+// //   // هنا الكود بتاع المسح
+// // }
+// }));
