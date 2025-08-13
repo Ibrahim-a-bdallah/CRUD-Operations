@@ -1,12 +1,12 @@
+import { openModule } from "@/store/module/moduleSlice";
 import { IoIosAdd } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function Add() {
-  const navigate = useNavigate();
-
-    const handleAddClick = () => {
-    navigate("/form");
-    };
+  const dispatch = useDispatch();
+  const handleAddClick = () => {
+    dispatch(openModule({ type: "add" })); // Dispatch the action to open the module
+  };
 
   return (
     <div className="bg-[#8C197E] p-4 rounded-lg transition-all duration-200 cursor-pointer">

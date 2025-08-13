@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
+import items from "./create/itemsSlice";
 import module from "./module/moduleSlice";
 
 // إعداد التخزين
@@ -12,7 +12,8 @@ const rootPersistConfig = {
 
 // دمج الـ reducers
 const rootReducer = combineReducers({
-  module: module, // ← يفضل يكون الاسم بدون "Slice"
+  module: module,
+  items: items,
 });
 
 // ربط الـ persist
