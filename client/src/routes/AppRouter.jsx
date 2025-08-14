@@ -4,6 +4,9 @@ import { lazy } from "react";
 const Login = lazy(() => import("@/pages/Login"));
 const Register = lazy(() => import("@/pages/Register"));
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
+const Form = lazy(() => import("@/components/Form"));
+
+const Parent = lazy(() => import("@/pages/Parent"));
 
 import Error from "@/pages/Error";
 import MainLayouts from "../Layouts/MainLayouts";
@@ -14,7 +17,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <SuspensLottieFallback>
-        <MainLayouts />,
+        <MainLayouts />
       </SuspensLottieFallback>
     ),
     errorElement: <Error />,
@@ -41,6 +44,23 @@ const router = createBrowserRouter([
         element: (
           <SuspensLottieFallback>
             <Register />
+          </SuspensLottieFallback>
+        ),
+      },
+      {
+        path: "form", // ✅ المسار الجديد
+        element: (
+          <SuspensLottieFallback>
+            <Form />
+          </SuspensLottieFallback>
+        ),
+      },
+
+      {
+        path: "parent",
+        element: (
+          <SuspensLottieFallback>
+            <Parent />
           </SuspensLottieFallback>
         ),
       },

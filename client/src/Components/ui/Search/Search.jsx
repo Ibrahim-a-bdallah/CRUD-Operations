@@ -4,7 +4,9 @@ import {
   IoIosArrowDown,
   IoIosArrowBack,
   IoIosArrowForward,
+  IoIosAdd,
 } from "react-icons/io";
+import Add from "../Add";
 
 const data = ["item1", "item2", "item3", "item4"];
 
@@ -24,6 +26,9 @@ export default function Search() {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  
+
   // const startindex = (currentPage - 1) * numofitem;
   // const arrayitems = data.slice(startindex, startindex + numofitem);
 
@@ -39,6 +44,7 @@ export default function Search() {
           <span>Show KPIs</span>
         </div>
       </div>
+
       <div className="flex items-center gap-2.5">
         <button
           onClick={handlePrevPage}
@@ -65,7 +71,10 @@ export default function Search() {
         >
           <IoIosArrowForward />
         </button>
+        <Add/>
       </div>
+
+      {/* Add Button - في آخر الهيدر */}
     </div>
   );
 }
