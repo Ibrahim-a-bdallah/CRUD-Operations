@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   open: false,
   type: "add",
+  productInfo: [],
 };
 
 const moduleSlice = createSlice({
@@ -12,6 +13,7 @@ const moduleSlice = createSlice({
     openModule(state, action) {
       state.open = true;
       state.type = action.payload.type || "add"; // Default to "add" if no type is provided
+      state.productInfo = action.payload.productInfo || []; // Store items if provided
     },
     closeModule(state) {
       state.type = "add"; // Reset type to default when closing

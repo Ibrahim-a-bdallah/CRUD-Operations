@@ -3,6 +3,9 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import items from "./create/itemsSlice";
 import module from "./module/moduleSlice";
+import deleteItem from "./delete/deleteItemSlice";
+import updateItem from "./update/updateItemSlice";
+import products from "./get/productsInfoSlice";
 
 // إعداد التخزين
 const rootPersistConfig = {
@@ -13,7 +16,10 @@ const rootPersistConfig = {
 // دمج الـ reducers
 const rootReducer = combineReducers({
   module: module,
+  products: products,
   items: items,
+  deleteItem: deleteItem,
+  updateItem: updateItem,
 });
 
 // ربط الـ persist

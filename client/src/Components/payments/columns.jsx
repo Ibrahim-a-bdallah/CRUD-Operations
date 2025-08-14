@@ -1,13 +1,3 @@
-"use client";
-
-// خاص بال ts  >> Deleted soooon
-// export type Payment = {
-//   id: string
-//   amount: number
-//   status: "pending" | "processing" | "success" | "failed"
-//   email: string
-// }
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,9 +16,12 @@ import withReactContent from "sweetalert2-react-content";
 import { ContextMenuShortcut } from "../ui/context-menu";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { openModule } from "@/store/module/moduleSlice";
+import actDeleteItems from "@/store/delete/actDeleteItems";
+import actGetItems from "@/store/get/actGetItems";
 // import { useState } from "react";
 
-export const columns = [
+export const columns = (dispatch) => [
   {
     id: "select",
     header: ({ table }) => (
@@ -88,6 +81,10 @@ export const columns = [
     },
   },
   {
+    accessorKey: "id",
+    header: (info) => <DefaultHeader info={info} name="id" />,
+  },
+  {
     accessorKey: "name",
     header: (info) => <DefaultHeader info={info} name="Name" />,
   },
@@ -109,17 +106,19 @@ export const columns = [
     header: (info) => <DefaultHeader info={info} name="Description" />,
     // cell: ({ row }) => `$${row.getValue("total")}`, // Format price
   },
+
   {
     id: "actions",
     header: (info) => <DefaultHeader info={info} name="Actions" />,
     cell: ({ row }) => {
-      const requestId = row.getValue("requestNo");
+      const name = row.getValue("name");
+      const id = row.getValue("id");
       // SweetAlert2 for confirmation dialog
       const MySwal = withReactContent(Swal);
       const handleDelete = () => {
         MySwal.fire({
           title: "Are you sure?",
-          text: `You are about to delete request ${requestId}`,
+          text: `You are about to delete  ${name}`,
           icon: "warning",
           showCancelButton: true,
           confirmButtonText: "Yes, delete it",
@@ -127,14 +126,16 @@ export const columns = [
         }).then((result) => {
           if (result.isConfirmed) {
             // Perform delete action here
-            row.original.onDelete(row.original.requestNo);
-            MySwal.fire(
-              "Deleted!",
-              `Request ${requestId} has been deleted.`,
-              "success"
-            );
+            // row.original.onDelete(row.original.name);
+            dispatch(actDeleteItems(id)).then(() => {
+              dispatch(actGetItems());
+            });
+            MySwal.fire("Deleted!", `${name} has been deleted.`, "success");
           }
         });
+      };
+      const handleEdit = () => {
+        dispatch(openModule({ type: "Update", productInfo: row.original }));
       };
       return (
         <DropdownMenu>
@@ -164,7 +165,7 @@ export const columns = [
                             </DropdownMenuItem> */}
             <DropdownMenuItem
               className="text-green-600 cursor-pointer"
-              onClick={() => alert(`Edit Request ${requestId}`)}
+              onClick={handleEdit}
             >
               Edit
               <ContextMenuShortcut>
@@ -188,39 +189,3 @@ export const columns = [
     },
   },
 ];
-
-// const users = [
-//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
-//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
-//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
-//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
-//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
-//   { requestNo: 1, brand:"tv"  , category: "lab", price: 100,  name: "Ahmed", description: "Order for materials" },
-
-// ];
-// const [Categories, setCategories] = useState(null)
-
-// async function getCategories() {
-//   let {data} =  await axios.get("https://ecommerce.routemisr.com/api/v1/categories")
-//   setCategories(data.data)
-
-// }
-// useEffect(() => {
-//   getCategories()
-// }, [])
-
-// export const rows = users.map(user => ({
-// requestNo: user.requestNo,
-// name:user.name,
-// description:user.description,
-// price:user.price,
-// brand:user.brand,
-// category:user.category,
-// // image:user.image,
-
-// // // هنا لو عايز تمسح أو تعدل هتدي أكشن
-// // onDelete: (id) => {
-// //   console.log("Deleting request", id);
-// //   // هنا الكود بتاع المسح
-// // }
-// }));

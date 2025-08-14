@@ -1,10 +1,12 @@
 import api from "@/utils/axiosInstance";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const actPostItem = createAsyncThunk(
-  "actPostItem",
-  async (data, { rejectWithValue }) => {
+
+const actUpdateItem = createAsyncThunk(
+  "actUpdateItem",
+  async ({ data, id }, { rejectWithValue }) => {
     try {
-      const response = await api.post(`/api/items`, data);
+      const response = await api.put(`/api/items/${id}`, data);
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -12,4 +14,4 @@ const actPostItem = createAsyncThunk(
   }
 );
 
-export default actPostItem;
+export default actUpdateItem;
