@@ -3,6 +3,8 @@ import { columns } from "./columns"
 import { DataTable } from "./data-table"
 import { data } from "@/lib/data"
 import { useState } from "react"
+import { useEffect } from "react"
+import axios from "axios"
 
 
 
@@ -43,10 +45,27 @@ import { useState } from "react"
 
 export default function DemoPage() {
  const [Data , setData] = useState(data);
+//  const [products, setProducts] = useState([]);
+
+  // Fetching data from an API (example)
+  // You can replace this with your actual API call
+  
+//  useEffect(() => {
+//     axios
+//       .get("https://dummyjson.com/products")
+//       .then((res) => {
+//         console.log(res.data.products);
+//         setProducts(res.data.products);
+//       })
+//       .catch((err) => {
+//         console.error("Error fetching data:", err);
+//       });
+//   }, []);
+ ////////////////////////////////////////////////////
  const hundleDelete = (id) => {
     setData((prevData) => prevData.filter(item => item.requestNo !== id));
   }
-  const dataWithDelete = Data.map((item) => ({
+  const dataWithDelete = Data.map((item) => ({    
     ...item,
     onDelete: hundleDelete,
   }));

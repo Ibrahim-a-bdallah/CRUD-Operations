@@ -9,8 +9,8 @@ const MainLayouts = () => {
     <>
       <Header />
       <Outlet />
-      <Form />
-      <Succssed />
+      {/* <Form />
+      <Succssed /> */}
     </>
   );
 };
