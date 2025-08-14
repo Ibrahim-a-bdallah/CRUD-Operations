@@ -1,13 +1,3 @@
-"use client";
-
-// خاص بال ts  >> Deleted soooon
-// export type Payment = {
-//   id: string
-//   amount: number
-//   status: "pending" | "processing" | "success" | "failed"
-//   email: string
-// }
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,8 +16,12 @@ import withReactContent from "sweetalert2-react-content";
 import { ContextMenuShortcut } from "../ui/context-menu";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { openModule } from "@/store/module/moduleSlice";
+import actDeleteItems from "@/store/delete/actDeleteItems";
+import actGetItems from "@/store/get/actGetItems";
+// import { useState } from "react";
 
-export const columns = [
+export const columns = (dispatch) => [
   {
     id: "select",
     header: ({ table }) => (
@@ -87,16 +81,20 @@ export const columns = [
     },
   },
   {
-    accessorKey: "area",
-    header: (info) => <DefaultHeader info={info} name="Area" />,
+    accessorKey: "id",
+    header: (info) => <DefaultHeader info={info} name="id" />,
   },
   {
-    accessorKey: "date",
-    header: (info) => <DefaultHeader info={info} name="Date" />,
+    accessorKey: "name",
+    header: (info) => <DefaultHeader info={info} name="Name" />,
   },
   {
-    accessorKey: "needDate",
-    header: (info) => <DefaultHeader info={info} name="Need Date" />,
+    accessorKey: "brand",
+    header: (info) => <DefaultHeader info={info} name="Brand" />,
+  },
+  {
+    accessorKey: "category",
+    header: (info) => <DefaultHeader info={info} name="Category" />,
   },
   {
     accessorKey: "price",
@@ -104,38 +102,23 @@ export const columns = [
     cell: ({ row }) => `$${row.getValue("price")}`, // Format price
   },
   {
-    accessorKey: "total",
-    header: (info) => <DefaultHeader info={info} name="Total" />,
-    cell: ({ row }) => `$${row.getValue("total")}`, // Format price
+    accessorKey: "description",
+    header: (info) => <DefaultHeader info={info} name="Description" />,
+    // cell: ({ row }) => `$${row.getValue("total")}`, // Format price
   },
-  {
-    accessorKey: "materials",
-    header: (info) => <DefaultHeader info={info} name="Materials / Products" />,
-    cell: ({ row }) => {
-      const materials = row.original.materials;
 
-      return (
-        <div className=" flex space-x-3">
-          <span className="text-lg font-bold text-gray-800">{materials}</span>
-          <div className="flex flex-col">
-            <span className="text-xs text-gray-500">Material </span>
-            <span className="text-xs text-gray-500">requested</span>
-          </div>
-        </div>
-      );
-    },
-  },
   {
     id: "actions",
     header: (info) => <DefaultHeader info={info} name="Actions" />,
     cell: ({ row }) => {
-      const requestId = row.getValue("requestNo");
+      const name = row.getValue("name");
+      const id = row.getValue("id");
       // SweetAlert2 for confirmation dialog
       const MySwal = withReactContent(Swal);
       const handleDelete = () => {
         MySwal.fire({
           title: "Are you sure?",
-          text: `You are about to delete request ${requestId}`,
+          text: `You are about to delete  ${name}`,
           icon: "warning",
           showCancelButton: true,
           confirmButtonText: "Yes, delete it",
@@ -143,14 +126,16 @@ export const columns = [
         }).then((result) => {
           if (result.isConfirmed) {
             // Perform delete action here
-            row.original.onDelete(row.original.requestNo);
-            MySwal.fire(
-              "Deleted!",
-              `Request ${requestId} has been deleted.`,
-              "success"
-            );
+            // row.original.onDelete(row.original.name);
+            dispatch(actDeleteItems(id)).then(() => {
+              dispatch(actGetItems());
+            });
+            MySwal.fire("Deleted!", `${name} has been deleted.`, "success");
           }
         });
+      };
+      const handleEdit = () => {
+        dispatch(openModule({ type: "Update", productInfo: row.original }));
       };
       return (
         <DropdownMenu>
@@ -180,7 +165,7 @@ export const columns = [
                             </DropdownMenuItem> */}
             <DropdownMenuItem
               className="text-green-600 cursor-pointer"
-              onClick={() => alert(`Edit Request ${requestId}`)}
+              onClick={handleEdit}
             >
               Edit
               <ContextMenuShortcut>
