@@ -14,7 +14,6 @@ const Modules = () => {
     dispatch(resetItems());
   }
 
-  console.log("Module state:", { open, type });
   return (
     <Module
       open={open}

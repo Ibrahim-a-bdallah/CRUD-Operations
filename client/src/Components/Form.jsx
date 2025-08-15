@@ -18,6 +18,8 @@ import { resetItems } from "@/store/create/itemsSlice";
 import { Loader } from "lucide-react";
 import actPostItem from "@/store/create/actpostItems";
 import { useEffect, useState } from "react";
+import actUpdateItem from "@/store/update/actUpdateItem";
+import actGetItems from "@/store/get/actGetItems";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -40,37 +42,60 @@ const formSchema = z.object({
 
 export function ProfileForm() {
   const dispatch = useDispatch();
-  const { items, loading, error } = useSelector((state) => state.items);
-  const { type } = useSelector((state) => state.module);
+  const {
+    items,
+    loading: createLoading,
+    error: createError,
+  } = useSelector((state) => state.items);
+  const { loading: updateLoading, error: updateError } = useSelector(
+    (state) => state.updateItem
+  );
+
+  const { type, productInfo } = useSelector((state) => state.module);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: items?.[0]?.name || "",
-      description: items?.[0]?.description || "",
-      price: items?.[0]?.price || 0,
-      category: items?.[0]?.category || "",
+      name: items?.[0]?.name || productInfo?.name || "",
+      description: items?.[0]?.description || productInfo?.description || "",
+      price: items?.[0]?.price || productInfo?.price || 0,
+      category: items?.[0]?.category || productInfo?.category || "",
     },
   });
+  useEffect(() => {
+    form.reset({
+      name: items?.[0]?.name || productInfo?.name || "",
+      description: items?.[0]?.description || productInfo?.description || "",
+      price: items?.[0]?.price || productInfo?.price || 0,
+      category: items?.[0]?.category || productInfo?.category || "",
+    });
+  }, [items, productInfo, form]);
 
   function onSubmit(data) {
     setIsSubmitted(true);
     if (type === "Update") {
-      // dispatch(actUpdateItem(data, items[0].id));
+      dispatch(actUpdateItem({ data: data, id: productInfo.id })).then(() => {
+        dispatch(actGetItems());
+      });
     } else {
-      dispatch(actPostItem(data));
+      dispatch(actPostItem(data)).then(() => {
+        dispatch(actGetItems());
+      });
     }
   }
   useEffect(() => {
-    if (isSubmitted && loading === "success") {
+    if (
+      isSubmitted &&
+      (createLoading === "success" || updateLoading === "success")
+    ) {
       dispatch(openModule({ type: "success" }));
-      setIsSubmitted(false); // إعادة التهيئة عشان المرة الجاية
-      // form.reset(); // لو بتستخدم react-hook-form
+      setIsSubmitted(false);
     }
-  }, [loading, isSubmitted, dispatch]);
-  if (error) {
-    console.error("Error:", error);
+  }, [createLoading, updateLoading, isSubmitted, dispatch]);
+
+  if (createError || updateError) {
+    console.error("Error:", createError || updateError);
     // dispatch(openModule({ type: "error", message: error }));
   }
   return (
@@ -99,9 +124,12 @@ export function ProfileForm() {
                 <Button
                   type="submit"
                   className="w-full cursor-pointer bg-fuchsia-700 py-2 rounded hover:bg-fuchsia-800"
-                  disabled={loading === "pending"}
+                  disabled={
+                    createLoading === "pending" || updateLoading === "pending"
+                  }
                 >
-                  {loading === "pending" ? (
+                  {createLoading === "pending" ||
+                  updateLoading === "pending" ? (
                     <>
                       <Loader className="animate-spin h-2 w-2 text-white" />
                       Loading
