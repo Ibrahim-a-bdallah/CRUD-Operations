@@ -6,8 +6,6 @@ const Register = lazy(() => import("@/pages/Register"));
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
 const Form = lazy(() => import("@/components/Form"));
 
-const Parent = lazy(() => import("@/pages/Parent"));
-
 import Error from "@/pages/Error";
 import MainLayouts from "../Layouts/MainLayouts";
 import SuspenseLottieFallback from "@/components/LottieHandler/SuspenseLottieFallback.jsx";
@@ -52,15 +50,6 @@ const router = createBrowserRouter([
         element: (
           <SuspenseLottieFallback>
             <Form />
-          </SuspenseLottieFallback>
-        ),
-      },
-
-      {
-        path: "parent",
-        element: (
-          <SuspenseLottieFallback>
-            <Parent />
           </SuspenseLottieFallback>
         ),
       },
