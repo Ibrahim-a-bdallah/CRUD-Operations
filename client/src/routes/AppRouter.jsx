@@ -8,7 +8,7 @@ const Form = lazy(() => import("@/components/Form"));
 
 import Error from "@/pages/Error";
 import MainLayouts from "../Layouts/MainLayouts";
-import SuspenseLottieFallback from "@/components/LottieHandler/SuspenseLottieFallback";
+import SuspenseLottieFallback from "../components/LottieHandler/SuspenseLottieFallback";
 
 const router = createBrowserRouter([
   {
