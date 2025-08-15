@@ -1,12 +1,3 @@
 {
-  "rewrites": [
-    {
-      "source": "/create-payment-intent",
-      "destination": "/api/create-payment-intent"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
