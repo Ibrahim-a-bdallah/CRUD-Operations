@@ -4,7 +4,7 @@ import { lazy } from "react";
 const Login = lazy(() => import("@/pages/Login"));
 const Register = lazy(() => import("@/pages/Register"));
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
-const Form = lazy(() => import("@/components/Form"));
+const Form = lazy(() => import("@/components/Form.jsx"));
 
 import Error from "@/pages/Error";
 import MainLayouts from "../Layouts/MainLayouts";
