@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import LottieHandler from "./LottieHandler";
 
-const SuspensLottieFallback = ({
+const SuspenseLottieFallback = ({
   children,
   type,
   message,
@@ -22,4 +22,4 @@ const SuspensLottieFallback = ({
   );
 };
 
-export default SuspensLottieFallback;
+export default SuspenseLottieFallback;
