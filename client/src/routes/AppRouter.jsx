@@ -4,19 +4,21 @@ import { lazy } from "react";
 const Login = lazy(() => import("@/pages/Login"));
 const Register = lazy(() => import("@/pages/Register"));
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
-const Form = lazy(() => import("@/components/Form.jsx"));
+const Form = lazy(() => import("@/components/Form"));
+
+const Parent = lazy(() => import("@/pages/Parent"));
 
 import Error from "@/pages/Error";
 import MainLayouts from "../Layouts/MainLayouts";
-// import SuspensLottieFallback from "@/components/LottieHandler/SuspensLottieFallback";
+import SuspensLottieFallback from "@/components/LottieHandler/SuspensLottieFallback.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      // <SuspensLottieFallback>
-      <MainLayouts />
-      // </SuspensLottieFallback>
+      <SuspensLottieFallback>
+        <MainLayouts />
+      </SuspensLottieFallback>
     ),
     errorElement: <Error />,
     children: [
@@ -24,33 +26,42 @@ const router = createBrowserRouter([
         index: true,
         path: "",
         element: (
-          // <SuspensLottieFallback>
-          <Dashboard />
-          // </SuspensLottieFallback>
+          <SuspensLottieFallback>
+            <Dashboard />
+          </SuspensLottieFallback>
         ),
       },
       {
         path: "login",
         element: (
-          // <SuspensLottieFallback>
-          <Login />
-          // </SuspensLottieFallback> */}
+          <SuspensLottieFallback>
+            <Login />
+          </SuspensLottieFallback>
         ),
       },
       {
         path: "register",
         element: (
-          // <SuspensLottieFallback>
-          <Register />
-          // </SuspensLottieFallback>
+          <SuspensLottieFallback>
+            <Register />
+          </SuspensLottieFallback>
         ),
       },
       {
         path: "form", // ✅ المسار الجديد
         element: (
-          // <SuspensLottieFallback>
-          <Form />
-          // </SuspensLottieFallback>
+          <SuspensLottieFallback>
+            <Form />
+          </SuspensLottieFallback>
+        ),
+      },
+
+      {
+        path: "parent",
+        element: (
+          <SuspensLottieFallback>
+            <Parent />
+          </SuspensLottieFallback>
         ),
       },
     ],
