@@ -10,7 +10,7 @@ const Parent = lazy(() => import("@/pages/Parent"));
 
 import Error from "@/pages/Error";
 import MainLayouts from "../Layouts/MainLayouts";
-import SuspensLottieFallback from "@/components/LottieHandler/SuspensLottieFallback.jsx";
+import SuspensLottieFallback from "../components/LottieHandler/SuspensLottieFallback";
 
 const router = createBrowserRouter([
   {
