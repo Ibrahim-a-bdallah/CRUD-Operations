@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       // <SuspensLottieFallback>
-        <MainLayouts />
+      <MainLayouts />
       // </SuspensLottieFallback>
     ),
     errorElement: <Error />,
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         path: "",
         element: (
           // <SuspensLottieFallback>
-            <Dashboard />
+          <Dashboard />
           // </SuspensLottieFallback>
         ),
       },
@@ -33,15 +33,15 @@ const router = createBrowserRouter([
         path: "login",
         element: (
           // <SuspensLottieFallback>
-            <Login />
-          {/* </SuspensLottieFallback> */}
+          <Login />
+          // </SuspensLottieFallback> */}
         ),
       },
       {
         path: "register",
         element: (
           // <SuspensLottieFallback>
-            <Register />
+          <Register />
           // </SuspensLottieFallback>
         ),
       },
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         path: "form", // ✅ المسار الجديد
         element: (
           // <SuspensLottieFallback>
-            <Form />
+          <Form />
           // </SuspensLottieFallback>
         ),
       },
