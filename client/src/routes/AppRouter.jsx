@@ -8,15 +8,15 @@ const Form = lazy(() => import("@/components/Form"));
 
 import Error from "@/pages/Error";
 import MainLayouts from "../Layouts/MainLayouts";
-import SuspensLottieFallback from "@/components/LottieHandler/SuspensLottieFallback";
+// import SuspensLottieFallback from "@/components/LottieHandler/SuspensLottieFallback";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <SuspensLottieFallback>
+      // <SuspensLottieFallback>
         <MainLayouts />
-      </SuspensLottieFallback>
+      // </SuspensLottieFallback>
     ),
     errorElement: <Error />,
     children: [
@@ -24,33 +24,33 @@ const router = createBrowserRouter([
         index: true,
         path: "",
         element: (
-          <SuspensLottieFallback>
+          // <SuspensLottieFallback>
             <Dashboard />
-          </SuspensLottieFallback>
+          // </SuspensLottieFallback>
         ),
       },
       {
         path: "login",
         element: (
-          <SuspensLottieFallback>
+          // <SuspensLottieFallback>
             <Login />
-          </SuspensLottieFallback>
+          {/* </SuspensLottieFallback> */}
         ),
       },
       {
         path: "register",
         element: (
-          <SuspensLottieFallback>
+          // <SuspensLottieFallback>
             <Register />
-          </SuspensLottieFallback>
+          // </SuspensLottieFallback>
         ),
       },
       {
         path: "form", // ✅ المسار الجديد
         element: (
-          <SuspensLottieFallback>
+          // <SuspensLottieFallback>
             <Form />
-          </SuspensLottieFallback>
+          // </SuspensLottieFallback>
         ),
       },
     ],
