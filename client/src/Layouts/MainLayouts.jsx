@@ -1,13 +1,13 @@
-import Header from "@/components/ui/Header";
+// import Header from "@/components/ui/Header";
 import { Outlet } from "react-router-dom";
-import Modules from "@/components/Modules";
+// import Modules from "@/components/Modules";
 
 const MainLayouts = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Outlet />
-      <Modules />
+      {/* <Modules /> */}
     </>
   );
 };
