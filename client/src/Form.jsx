@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Comps/ui/button";
 import {
   Form,
   FormControl,
@@ -10,8 +10,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/Comps/ui/form";
+import { Input } from "@/Comps/ui/input";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModule, openModule } from "@/store/module/moduleSlice";
 import { resetItems } from "@/store/create/itemsSlice";

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Comps/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,14 +6,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Checkbox } from "@/Components/ui/checkbox";
+} from "@/Comps/ui/dropdown-menu";
+import { Checkbox } from "@/Comps/ui/checkbox";
 import { MoreVertical } from "lucide-react";
 import DefaultHeader from "./default-header";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-import { ContextMenuShortcut } from "@/components/ui/context-menu";
+import { ContextMenuShortcut } from "@/Comps/ui/context-menu";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { openModule } from "@/store/module/moduleSlice";

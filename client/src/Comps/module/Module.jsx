@@ -1,4 +1,4 @@
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/Comps/ui/dialog";
 
 const Module = ({ children, open, onChange }) => {
   return (
