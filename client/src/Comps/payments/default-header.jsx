@@ -5,7 +5,7 @@ import {
   ContextMenuCheckboxItem,
   ContextMenuContent,
   ContextMenuTrigger,
-} from "../components/ui/context-menu";
+} from "@/components/ui/context-menu";
 
 export default function DefaultHeader({ info, name }) {
   const { table } = info;

@@ -1,4 +1,4 @@
-import LottieHandler from "../components/LottieHandler/LottieHandler";
+import LottieHandler from "../Comps/LottieHandler/LottieHandler";
 import { Link } from "react-router-dom";
 
 const Error = () => {

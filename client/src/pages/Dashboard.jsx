@@ -1,4 +1,4 @@
-import DemoPage from "@/components/payments/page";
+import DemoPage from "../Comps/payments/page";
 // import DemoPage from "@/components/payments/page";
 // import DemoPage from "../components/payments/page";
 // import { Button } from "@/components/ui/button";

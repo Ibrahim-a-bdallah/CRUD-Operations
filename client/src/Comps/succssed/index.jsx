@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Button } from "../ui/button";
+import { Button } from "../../components/ui/button";
 import { closeModule, openModule } from "@/store/module/moduleSlice";
 import LottieHandler from "../LottieHandler/LottieHandler";
 import { resetItems } from "@/store/create/itemsSlice";
