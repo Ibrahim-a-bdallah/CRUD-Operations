@@ -13,7 +13,7 @@ import DefaultHeader from "./default-header";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-import { ContextMenuShortcut } from "../ui/context-menu";
+import { ContextMenuShortcut } from "../components/ui/context-menu";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { openModule } from "@/store/module/moduleSlice";
