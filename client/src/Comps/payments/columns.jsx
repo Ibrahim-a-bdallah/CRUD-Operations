@@ -46,51 +46,12 @@ export const columns = (dispatch) => [
     enableHiding: false,
   },
   {
-    accessorKey: "requestNo",
-    header: (info) => (
-      <DefaultHeader info={info} name="Request No." className="" />
-    ),
-    cell: ({ row }) => {
-      const requestNo = row.original.requestNo;
-      const status = row.original.status;
-
-      return (
-        <div
-          className={`flex flex-col pl-3 border-l-4 border- ${
-            status === "Urgent"
-              ? "border-red-600 "
-              : status === "Attention"
-              ? "border-yellow-600"
-              : "border-green-600 "
-          }`}
-        >
-          <span className="font-bold">{requestNo}</span>
-          <span
-            className={`text-xs ${
-              status === "Urgent"
-                ? "text-red-600 "
-                : status === "Attention"
-                ? "text-yellow-600"
-                : "text-green-600 "
-            }`}
-          >
-            {status}
-          </span>
-        </div>
-      );
-    },
-  },
-  {
     accessorKey: "id",
     header: (info) => <DefaultHeader info={info} name="id" />,
   },
   {
     accessorKey: "name",
     header: (info) => <DefaultHeader info={info} name="Name" />,
-  },
-  {
-    accessorKey: "brand",
-    header: (info) => <DefaultHeader info={info} name="Brand" />,
   },
   {
     accessorKey: "category",

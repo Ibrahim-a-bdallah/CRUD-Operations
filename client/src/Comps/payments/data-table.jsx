@@ -25,8 +25,8 @@ export function DataTable({ columns, data }) {
   });
 
   return (
-    <div className="w-full flex flex-col gap-4 ">
-      <div className="overflow-hidden  rounded-md  flex flex-2/3  max-h-[600px]">
+    <div className="w-full flex flex-col gap-4 h-screen max-h-screen">
+      <div className="overflow-hidden  rounded-md  flex   max-h-[600px]">
         <Table>
           <TableHeader className="sticky top-0 z-10 start-0 bg-white shadow-md ">
             {table.getHeaderGroups().map((headerGroup) => (
