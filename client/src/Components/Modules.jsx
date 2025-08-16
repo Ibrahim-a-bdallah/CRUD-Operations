@@ -3,7 +3,7 @@ import { closeModule } from "@/store/module/moduleSlice";
 // import Form from "./Form";
 import Succssed from "./succssed";
 import Module from "./module/Module";
-import { ProfileForm } from "./Form";
+import { ProfileForm } from "../Form";
 import { resetItems } from "@/store/create/itemsSlice";
 
 const Modules = () => {

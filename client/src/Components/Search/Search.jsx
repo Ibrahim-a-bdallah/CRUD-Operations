@@ -6,7 +6,7 @@ import {
   IoIosArrowForward,
   IoIosAdd,
 } from "react-icons/io";
-import Add from "../Add";
+import Add from "../ui/Add";
 
 const data = ["item1", "item2", "item3", "item4"];
 
@@ -26,8 +26,6 @@ export default function Search() {
       setCurrentPage(currentPage + 1);
     }
   };
-
-  
 
   // const startindex = (currentPage - 1) * numofitem;
   // const arrayitems = data.slice(startindex, startindex + numofitem);
@@ -71,7 +69,7 @@ export default function Search() {
         >
           <IoIosArrowForward />
         </button>
-        <Add/>
+        <Add />
       </div>
 
       {/* Add Button - في آخر الهيدر */}

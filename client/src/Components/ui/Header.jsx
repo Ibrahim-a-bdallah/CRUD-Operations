@@ -1,5 +1,5 @@
 import { FaTh, FaBell, FaEnvelope, FaCog } from "react-icons/fa";
-import Search from "./Search/Search";
+import Search from "../Search/Search";
 
 const Header = () => {
   return (
