@@ -1,4 +1,5 @@
-import DemoPage from "@/components/payments/page";
+// import DemoPage from "@/components/payments/page";
+import DemoPage from "../components/payments/page";
 // import { Button } from "@/components/ui/button";
 // import { openModule } from "@/store/module/moduleSlice";
 import React from "react";
