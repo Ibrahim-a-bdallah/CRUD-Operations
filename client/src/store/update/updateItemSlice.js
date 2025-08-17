@@ -4,6 +4,7 @@ import actUpdateItem from "./actUpdateItem";
 const updateItemSlice = createSlice({
   name: "UpdateItem",
   initialState: {
+    items: [],
     loading: "idel",
     error: null,
   },
@@ -11,10 +12,12 @@ const updateItemSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(actUpdateItem.pending, (state) => {
+        state.items = [];
         state.loading = "pending";
         state.error = null;
       })
-      .addCase(actUpdateItem.fulfilled, (state) => {
+      .addCase(actUpdateItem.fulfilled, (state, action) => {
+        state.items = action.payload;
         state.loading = "success";
       })
       .addCase(actUpdateItem.rejected, (state, action) => {

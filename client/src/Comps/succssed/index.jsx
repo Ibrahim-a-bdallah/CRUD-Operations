@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../ui/button";
 import { closeModule, openModule } from "@/store/module/moduleSlice";
 import LottieHandler from "../LottieHandler/LottieHandler";
@@ -6,8 +6,9 @@ import { resetItems } from "@/store/create/itemsSlice";
 
 const Succssed = () => {
   const dispatch = useDispatch();
+  const { items: productInfo } = useSelector((state) => state.updateItem);
   const editHandler = () => {
-    dispatch(openModule({ type: "Update" }));
+    dispatch(openModule({ type: "Update", productInfo: productInfo }));
   };
   return (
     <div className="text-white w-full max-m-full h-full max-h-full bg-blue-950 p-4 rounded-2xl flex flex-col justify-center items-center gap-4 md:gap-5">
