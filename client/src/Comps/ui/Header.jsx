@@ -7,7 +7,7 @@ const Header = () => {
       <div className="bg-blue-900 text-white p-4 flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-4 md:mb-0">
           <FaTh className="text-2xl" />
-          <h1 className="ml-3 text-xl font-semibold">Basic CRUD UI</h1>
+          <h1 className="ml-3 text-xl font-semibold">Basic CRUD</h1>
         </div>
 
         <div className="flex flex-col items-center md:items-end space-y-2">
